@@ -8,11 +8,15 @@ __...Thailand data__ _(PM2.5, PM10, NO₂, CO, SO₂, and O₃)_
 | Nonthaburi | Chiangrai | Sakon Nakhon | Chiangrai | Chanthaburi | Trang | Prachuap Khiri Khan |
 | 225629 | 225567 | 228544 | 353740 | 228627 | 354124 |
 
+![thailand-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-1.jpg?raw=true)
+
 __...Worldwide data__ _(PM2.5)_
 | NA  | SA | EU | AF | ASIA(India) | ASIA(Thailand) | ASIA(Japan) | AUS | 
 | --- | -- | -- | ---| ----------- | -------------- | ----------- | --- |
 | Florida, US | Sao Paulo, Brazil | Berlin, Germany | Cape Town, South Africa | New Delhi | Bangkok | Tokyo | Canberra |
 | 1324 | 589967 | 2162178 | 1590755 | 8118 | 225617 | 1214722 | 9466 |
+
+![worldwide-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-2.jpg?raw=true)
 
 # About the code
 <details>
@@ -254,11 +258,7 @@ __...US AQI__
 ```
 
 ### Data visualisation
-There are 2 dashboards available, Thailand and Worldwide. Both dashboards can display data in the past 24 hours, 3 days and 5 days, however, the time can be manually selected through Grafana's dashboard as well. The following is an example dashboard of each region: <br>
-__...Thailand__
-![thailand-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-1.jpg?raw=true)
-__...Worldwide__
-![worldwide-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-2.jpg?raw=true)
+There are 2 dashboards available, Thailand and Worldwide. Both dashboards can display data in the past 24 hours, 3 days and 5 days, however, the time can be manually selected through Grafana's dashboard as well. An example of each dashboard can be seen in the beginning of _README.md_ or within the _dashboard_ folder. <br>
 
 # Opening the project
 ### Executing the code
