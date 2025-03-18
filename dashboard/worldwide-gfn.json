@@ -1,0 +1,2882 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AIR-QUALITY-DATA",
+      "label": "air-quality-data",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mysql",
+      "pluginName": "MySQL"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "geomap",
+      "name": "Geomap",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.3.0"
+    },
+    {
+      "type": "datasource",
+      "id": "mysql",
+      "name": "MySQL",
+      "version": "11.3.0-pre"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "williamvenner-timepickerbuttons-panel",
+      "name": "Timepicker Buttons Panel",
+      "version": "4.1.1"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "This is a dashboard to display air quality in cities worldwide.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 20,
+      "options": {
+        "buttonTextOption": "button_text",
+        "displayButtonsHorizontal": true,
+        "displayStyle": "button",
+        "primaryFieldOption": "time_form",
+        "primaryFieldValueOption": "1",
+        "timeFromOption": "time_form",
+        "timeToOption": "time_to"
+      },
+      "pluginVersion": "4.1.1",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "-- 26/10/2024 00:00:00(GMT+0700) to 27/10/2024 00:00:00(GMT+0700)\r\nSELECT \t1729875600 AS 'time_form',\r\n1729962000 AS 'time_to',\r\n'Past 24 Hours' as 'button_text'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "MIN",
+                "parameters": [
+                  {
+                    "name": "recorded_at",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "Thailand"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "-- 26/10/2024 00:00:00(GMT+0700) to 29/10/2024 00:00:00(GMT+0700)\r\nSELECT \t1729875600 AS 'time_form',\r\n1730134800 AS 'time_to',\r\n'Past 3 Days' as 'button_text'",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "-- 26/10/2024 00:00:00(GMT+0700) to 31/10/2024 00:00:00(GMT+0700)\r\nSELECT \t1729875600 AS 'time_form',\r\n1730307600 AS 'time_to',\r\n'Past 5 Days' as 'button_text'",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "williamvenner-timepickerbuttons-panel"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 26
+              },
+              {
+                "color": "#EAB839",
+                "value": 51
+              },
+              {
+                "color": "light-orange",
+                "value": 101
+              },
+              {
+                "color": "light-red",
+                "value": 201
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 11,
+        "x": 6,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "basemap": {
+          "config": {
+            "server": "streets",
+            "showLabels": true,
+            "theme": "auto"
+          },
+          "name": "Layer 0",
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": true,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "avg_AQI",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.6,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 8,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "text": {
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "textConfig": {
+                  "fontSize": 8,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Station AQI",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": false,
+          "id": "coords",
+          "lastOnly": false,
+          "lat": 12.61545,
+          "layer": "Station",
+          "lon": 13.30981,
+          "padding": 15,
+          "zoom": 1.9
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT L.latitude AS lat,L.longitude AS lng,AVG(W.AQI) AS avg_AQI\r\nFROM Worldwide W\r\nJOIN \r\n    Location L ON W.location_id = L.location_id\r\nWHERE L.region = 'Worldwide'\r\n    AND $__timeFilter(W.recorded_at)\r\nGROUP BY L.location_id, L.latitude, L.longitude;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "latitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "longitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "99a8a9ba-cdef-4012-b456-7192dcdcee1d",
+                  "properties": {
+                    "field": "region",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      "Thailand"
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "text"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "region = 'Thailand'"
+          },
+          "table": "Location"
+        }
+      ],
+      "title": "Average AQI for PM2.5 by Station",
+      "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 51
+              },
+              {
+                "color": "light-yellow",
+                "value": 101
+              },
+              {
+                "color": "light-orange",
+                "value": 151
+              },
+              {
+                "color": "light-red",
+                "value": 201
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 301
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Florida"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Sao Paulo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Berlin"
+              },
+              {
+                "id": "max",
+                "value": 119
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Cape Town"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "New Delhi"
+              },
+              {
+                "id": "max",
+                "value": 350
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bangkok"
+              },
+              {
+                "id": "max",
+                "value": 149
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "G"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Tokyo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "H"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Canberra"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 1324 LIMIT 50 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1324
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1324"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 589967 LIMIT 50 ",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      589967
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 589967"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 2162178 LIMIT 50 ",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      2162178
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 2162178"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 1590755 LIMIT 50 ",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1590755
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1590755"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 8118 LIMIT 50 ",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      8118
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 8118"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 225617 LIMIT 50 ",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      225617
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 225617"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 1214722 LIMIT 50 ",
+          "refId": "G",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1214722
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1214722"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT AQI FROM air_quality.Worldwide WHERE location_id = 9466 LIMIT 50 ",
+          "refId": "H",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      9466
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 9466"
+          },
+          "table": "Worldwide"
+        }
+      ],
+      "title": "Average AQI for PM2.5 by Station",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "neutral": 0
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "light-blue",
+                  "index": 0,
+                  "text": "Good"
+                },
+                "to": 51
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 51,
+                "result": {
+                  "color": "light-green",
+                  "index": 1,
+                  "text": "Moderate"
+                },
+                "to": 100
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 100,
+                "result": {
+                  "color": "light-yellow",
+                  "index": 2,
+                  "text": "Unhealthy (Sensitive)"
+                },
+                "to": 150
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 150,
+                "result": {
+                  "color": "light-orange",
+                  "index": 3,
+                  "text": "Unhealthy"
+                },
+                "to": 200
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 200,
+                "result": {
+                  "color": "light-red",
+                  "index": 4,
+                  "text": "Very Unhealthy"
+                },
+                "to": 300
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 300,
+                "result": {
+                  "color": "semi-dark-red",
+                  "index": 5,
+                  "text": "Hazardous"
+                },
+                "to": 400
+              },
+              "type": "range"
+            }
+          ],
+          "max": 250,
+          "min": 0,
+          "noValue": "Unknown",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 26
+              },
+              {
+                "color": "light-yellow",
+                "value": 51
+              },
+              {
+                "color": "light-orange",
+                "value": 101
+              },
+              {
+                "color": "light-red",
+                "value": 201
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AQI"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "id": 1,
+      "options": {
+        "minVizHeight": 0,
+        "minVizWidth": 75,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^AQI$/",
+          "limit": 50,
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto",
+        "text": {}
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT AQI, recorded_at \r\nFROM air_quality.Worldwide\r\nWHERE $__timeFilter(recorded_at)\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "recorded_at",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "Thailand"
+        }
+      ],
+      "title": "Average AQI for PM2.5",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 250,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 51
+              },
+              {
+                "color": "light-yellow",
+                "value": 101
+              },
+              {
+                "color": "light-orange",
+                "value": 151
+              },
+              {
+                "color": "light-red",
+                "value": 201
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 301
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 9
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT L.location_city, T.avg_AQI\r\nFROM (\r\n    SELECT location_id, AVG(AQI) AS avg_AQI\r\n    FROM Worldwide\r\n    WHERE $__timeFilter(recorded_at)\r\n    GROUP BY location_id\r\n) AS T\r\nJOIN \r\n    Location AS L ON T.location_id = L.location_id\r\nORDER BY T.avg_AQI DESC\r\nLIMIT 1;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "location_id",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [],
+              "id": "aabaabb8-0123-4456-b89a-b192dc465257",
+              "properties": {
+                "conjunction": "OR"
+              },
+              "type": "group"
+            }
+          },
+          "table": "Thailand"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "hide": false,
+          "rawSql": "SELECT recorded_at FROM air_quality.Thailand LIMIT 50 ",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "recorded_at",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "Thailand"
+        }
+      ],
+      "title": "Most Polluted Station",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "AVG(AQI)": ""
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 250,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 51
+              },
+              {
+                "color": "light-yellow",
+                "value": 101
+              },
+              {
+                "color": "light-orange",
+                "value": 151
+              },
+              {
+                "color": "light-red",
+                "value": 201
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 301
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 3,
+        "y": 9
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^avg_AQI$/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT L.location_city, T.avg_AQI\r\nFROM (\r\n    SELECT location_id, AVG(AQI) AS avg_AQI\r\n    FROM Worldwide\r\n    WHERE $__timeFilter(recorded_at)\r\n    GROUP BY location_id\r\n) AS T\r\nJOIN\r\n    Location AS L ON T.location_id = L.location_id\r\nORDER BY T.avg_AQI ASC\r\nLIMIT 1;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "location_id",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [],
+              "id": "aabaabb8-0123-4456-b89a-b192dc465257",
+              "properties": {
+                "conjunction": "OR"
+              },
+              "type": "group"
+            }
+          },
+          "table": "Thailand"
+        }
+      ],
+      "title": "Least Polluted Station",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "AVG(AQI)": ""
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "μg/m³",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Florida"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Sao Paulo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Berlin"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Cape Town"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "New Delhi"
+              },
+              {
+                "id": "max",
+                "value": 250
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bangkok"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "G"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Tokyo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "H"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Canberra"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 11,
+        "x": 6,
+        "y": 11
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at \r\nFROM air_quality.Worldwide \r\nWHERE location_id = 1324",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "pm25",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "recorded_at",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "baab89bb-cdef-4012-b456-7192dd55e312",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1324
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1324"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 589967\r\n",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 2162178\r\n",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 1590755",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 8118",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 225617",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 1214722",
+          "refId": "G",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25, recorded_at\r\nFROM air_quality.Worldwide\r\nWHERE location_id = 9466",
+          "refId": "H",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Historic PM2.5 by Station",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 9.1
+              },
+              {
+                "color": "light-yellow",
+                "value": 35.5
+              },
+              {
+                "color": "light-orange",
+                "value": 55.5
+              },
+              {
+                "color": "light-red",
+                "value": 125.5
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 225.5
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Florida"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Sao Paulo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Berlin"
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Cape Town"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "New Delhi"
+              },
+              {
+                "id": "max",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Bangkok"
+              },
+              {
+                "id": "max",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "G"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Tokyo"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "H"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Canberra"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 7,
+        "x": 17,
+        "y": 11
+      },
+      "id": 19,
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 34,
+        "minVizWidth": 8,
+        "namePlacement": "left",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 1324",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1324
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1324"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 589967",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      589967
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 589967"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 2162178",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      2162178
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 2162178"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 1590755",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1590755
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1590755"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 8118",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      8118
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 8118"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 225617",
+          "refId": "F",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      225617
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 225617"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 1214722",
+          "refId": "G",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      1214722
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 1214722"
+          },
+          "table": "Worldwide"
+        },
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT pm25 FROM air_quality.Worldwide WHERE location_id = 9466",
+          "refId": "H",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "AQI",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "bb8ba98b-89ab-4cde-b012-3192dd70e214",
+                  "properties": {
+                    "field": "location_id",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      9466
+                    ],
+                    "valueError": [
+                      null
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "89b8999b-0123-4456-b89a-b192dcb80c6b",
+              "type": "group"
+            },
+            "whereString": "location_id = 9466"
+          },
+          "table": "Worldwide"
+        }
+      ],
+      "title": "Average PM2.5 by Station (μg/m³)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "${DS_AIR-QUALITY-DATA}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "displayName": "PM2.5",
+          "mappings": [],
+          "max": 101,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "light-green",
+                "value": 35.4
+              },
+              {
+                "color": "light-yellow",
+                "value": 55.4
+              },
+              {
+                "color": "light-orange",
+                "value": 125.4
+              },
+              {
+                "color": "light-red",
+                "value": 225.4
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 300
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 14
+      },
+      "id": 8,
+      "options": {
+        "displayMode": "basic",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 145,
+        "minVizWidth": 8,
+        "namePlacement": "left",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "dataset": "air_quality",
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_AIR-QUALITY-DATA}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT pm25\r\nFROM air_quality.Worldwide\r\nWHERE $__timeFilter(recorded_at)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "pm25",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "pm10",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "no2",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "o3",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "so2",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "co",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "Thailand"
+        }
+      ],
+      "title": "Average Pollutants (µg/m³)",
+      "type": "bargauge"
+    },
+    {
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 17
+      },
+      "id": 17,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<p><b>Station:</b><br>\r\n  1) North America(US): Florida,\r\n  2) South America(Brazil): Sao Paulo,\r\n  3) Europe(Germany): Berlin,\r\n  4) Africa(South Africa): Cape Town,\r\n  5) Asia(India): New Delhi,\r\n  6) Asia(Thailand): Bangkok,\r\n  7) Asia(Japan): Tokyo,\r\n  8) Australia: Canberra\r\n</P>\r\n\r\n\r\n\r\n\r\n\r\n",
+        "mode": "html"
+      },
+      "pluginVersion": "11.3.0",
+      "type": "text"
+    }
+  ],
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Worldwide",
+  "uid": "ee2fioz1sz7cwa",
+  "version": 8,
+  "weekStart": ""
+}
