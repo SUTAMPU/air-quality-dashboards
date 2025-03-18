@@ -1,4 +1,4 @@
-# AQ-Application (Project)
+# Air Quality Application
 This project is about air quality API. It fetches air quality data from __[OpenAQ](https://openaq.org/)__ for specific locations in Thailand(6) and worldwide(8), processes the data, and stores it in both InfluxDB and MySQL databases.
 
 The data retrieved are from these following sensor locations: <br>
