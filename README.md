@@ -256,9 +256,9 @@ __...US AQI__
 ### Data visualisation
 There are 2 dashboards available, Thailand and Worldwide. Both dashboards can display data in the past 24 hours, 3 days and 5 days, however, the time can be manually selected through Grafana's dashboard as well. The following is an example dashboard of each region: <br>
 __...Thailand__
-![thailand-dashboard](https://github.com/SUTAMPU/AQ-Application/blob/main/dashboard/preview-1.jpg?raw=true)
+![thailand-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-1.jpg?raw=true)
 __...Worldwide__
-![worldwide-dashboard](https://github.com/SUTAMPU/AQ-Application/blob/main/dashboard/preview-2.jpg?raw=true)
+![worldwide-dashboard](https://github.com/SUTAMPU/air-quality-dashboards/blob/main/dashboard/preview-2.jpg?raw=true)
 
 # Opening the project
 ### Executing the code
